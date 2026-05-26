@@ -6,7 +6,7 @@ Skills provide persistent context that agents and developers reference during wo
 
 ### portfolio-context
 
-**Purpose**: Defines who Marcos Lott Jr. is, how the portfolio should position him, and what tone to use.
+**Purpose**: Defines who Marcos Lott is, how the portfolio should position him, and what tone to use.
 
 **Files**:
 - `profile.md` — Professional background and domain expertise.
