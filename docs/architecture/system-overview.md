@@ -2,7 +2,7 @@
 
 ## What This Is
 
-A personal portfolio and brand platform for Marcos Lott Jr. Built with Next.js, it demonstrates technical seniority, architectural clarity, visual taste, and pragmatic use of AI in development.
+A personal portfolio and brand platform for Marcos Lott. Built with Next.js, it demonstrates technical seniority, architectural clarity, visual taste, and pragmatic use of AI in development.
 
 ## Architecture Summary
 

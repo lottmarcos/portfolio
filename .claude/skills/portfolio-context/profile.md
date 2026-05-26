@@ -1,4 +1,4 @@
-# Profile — Marcos Lott Jr.
+# Profile — Marcos Lott
 
 ## Current Role
 

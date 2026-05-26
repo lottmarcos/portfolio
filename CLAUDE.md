@@ -1,13 +1,15 @@
-# Portfolio — Marcos Lott Jr.
+# Portfolio — Marcos Lott
 
 Personal brand platform built with Next.js. Communicates technical seniority, visual taste, architectural clarity, and pragmatic use of AI in development.
 
 ## Stack
 
-- Next.js 15+ (App Router, Server Components default)
+- Next.js 16+ (App Router, Server Components default)
 - React 19+, TypeScript (strict)
-- Tailwind CSS v4, shadcn/ui
+- Tailwind CSS v4, shadcn/ui (base-nova style)
 - Color palette: Dracula Theme (dark: Dracula Classic, light: Alucard Classic)
+- Supabase (data layer, auth-ready)
+- next-themes (dark/light mode)
 - Deployed on Vercel
 
 ## Project Structure
@@ -15,12 +17,25 @@ Personal brand platform built with Next.js. Communicates technical seniority, vi
 ```
 src/
   app/           # App Router pages and layouts
-  components/    # Shared UI components
-  lib/           # Utilities and shared logic
+  components/    # Shared UI components (theme-provider, ui/)
+  lib/           # Utilities, types, Supabase clients
+    supabase/    # client.ts (browser), server.ts (SSR), admin.ts (service role)
+    utils.ts     # cn() and shared helpers
+    types.ts     # Shared TypeScript types
+  proxy.ts       # Request proxy (Supabase session refresh)
 docs/            # Architecture decisions, design system docs, AI workflow docs
 .claude/
   agents/        # Custom Claude Code agents (orchestrator, fullstack, design-system)
   skills/        # Context skills (portfolio-context, nextjs, design-system, quality-gate)
+```
+
+## Commands
+
+```bash
+yarn dev          # Start dev server (Turbopack)
+yarn build        # Production build
+yarn lint         # ESLint (zero warnings)
+yarn typecheck    # TypeScript strict check
 ```
 
 ## AI Workflow
@@ -47,6 +62,8 @@ Four skills provide shared context:
 - Prefer editing existing files over creating new ones.
 - No comments unless the "why" is non-obvious.
 - No premature abstractions. Three similar lines > a premature helper.
+- Supabase service role key (`SUPABASE_SERVICE_ROLE_KEY`) is server-only. Never import `admin.ts` in client code.
+- Next.js 16 uses `proxy.ts` instead of `middleware.ts`.
 
 ## Quality Gate
 

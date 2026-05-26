@@ -8,7 +8,7 @@ Export a `metadata` object for pages with fixed content:
 
 ```tsx
 export const metadata: Metadata = {
-  title: "Projects — Marcos Lott Jr.",
+  title: "Projects — Marcos Lott",
   description: "Selected projects demonstrating fullstack engineering and system design.",
 }
 ```
@@ -21,7 +21,7 @@ Use `generateMetadata` for pages with dynamic content:
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const project = await getProjectBySlug(params.slug)
   return {
-    title: `${project.title} — Marcos Lott Jr.`,
+    title: `${project.title} — Marcos Lott`,
     description: project.summary,
   }
 }
@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 Set defaults in the root layout that child pages inherit or override:
 
 - `metadataBase`: The canonical URL of the site.
-- `title.template`: Pattern like `"%s — Marcos Lott Jr."` so child pages only set the variable part.
+- `title.template`: Pattern like `"%s — Marcos Lott"` so child pages only set the variable part.
 - `openGraph.siteName`: Consistent across all pages.
 - `robots`: Default to `index, follow`.
 

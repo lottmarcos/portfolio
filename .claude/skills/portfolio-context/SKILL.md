@@ -1,6 +1,6 @@
 ---
 name: portfolio-context
-description: Provides personal brand context — who Marcos Lott Jr. is, his positioning, achievements, tone of voice, and technology stack rationale. Use when making decisions that affect how the portfolio represents its owner.
+description: Provides personal brand context — who Marcos Lott is, his positioning, achievements, tone of voice, and technology stack rationale. Use when making decisions that affect how the portfolio represents its owner.
 ---
 
 # Portfolio Context

@@ -34,13 +34,23 @@ Rationale for every major technology choice in the portfolio.
 
 **Why RTK**: Token optimization for development operations. Keeps AI-assisted development cost-effective without sacrificing output quality.
 
+## Data Layer: Supabase
+
+**Why**: Provides Postgres database, auth, storage, and real-time capabilities in a single service. Generous free tier. The `@supabase/ssr` package integrates cleanly with Next.js App Router via Server Components and Server Actions.
+
+**Architecture**: Three client helpers in `src/lib/supabase/`:
+- `client.ts` — Browser client using anon key (safe for client-side).
+- `server.ts` — Server client for Server Components and Server Actions (cookie-based session).
+- `admin.ts` — Service role client for admin operations (server-only, never exposed to client).
+
+**Security**: Service role key is in `SUPABASE_SERVICE_ROLE_KEY` (not `NEXT_PUBLIC_*`). The `admin.ts` file imports `server-only` to prevent accidental client-side usage.
+
 ## What's Intentionally NOT in the Stack
 
 | Technology | Why excluded |
 |-----------|-------------|
 | State management libraries (Redux, Zustand) | React Server Components + built-in state primitives are sufficient |
 | CSS-in-JS (styled-components, emotion) | Runtime overhead, Tailwind covers the use cases better |
-| ORM (Prisma, Drizzle) | No database needed initially. Add when a feature requires persistence |
-| Authentication (NextAuth, Clerk) | No auth needed initially. Add when a feature requires it |
+| ORM (Prisma, Drizzle) | Supabase client handles queries directly. Add ORM only if query complexity demands it |
 | CMS (Contentful, Sanity) | Content lives in the repo as MDX or static data until scale demands a CMS |
 | Testing framework | Will be decided when the first testable feature is built — not upfront |

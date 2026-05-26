@@ -1,0 +1,168 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================
+   PALETTE: Dracula Theme
+   Source: https://draculatheme.com/spec
+   To swap palettes: replace only this section.
+   ============================================ */
+
+/* --- Alucard Classic (Light Mode) --- */
+:root {
+  --background: #FFFBEB;
+  --foreground: #1F1F1F;
+  --card: #EFEDDC;
+  --card-foreground: #1F1F1F;
+  --popover: #FFFBEB;
+  --popover-foreground: #1F1F1F;
+  --primary: #644AC9;
+  --primary-foreground: #FFFBEB;
+  --secondary: #DEDCCF;
+  --secondary-foreground: #1F1F1F;
+  --muted: #ECE9DF;
+  --muted-foreground: #6C664B;
+  --accent: #DEDCCF;
+  --accent-foreground: #1F1F1F;
+  --destructive: #CB3A2A;
+  --border: #CECCC0;
+  --input: #CECCC0;
+  --ring: #644AC9;
+  --chart-1: #644AC9;
+  --chart-2: #14710A;
+  --chart-3: #036A96;
+  --chart-4: #A34D14;
+  --chart-5: #A3144D;
+  --radius: 0.5rem;
+  --sidebar: #EFEDDC;
+  --sidebar-foreground: #1F1F1F;
+  --sidebar-primary: #644AC9;
+  --sidebar-primary-foreground: #FFFBEB;
+  --sidebar-accent: #DEDCCF;
+  --sidebar-accent-foreground: #1F1F1F;
+  --sidebar-border: #CECCC0;
+  --sidebar-ring: #644AC9;
+
+  /* Dracula extended palette — for custom components */
+  --dracula-red: #CB3A2A;
+  --dracula-orange: #A34D14;
+  --dracula-yellow: #846E15;
+  --dracula-green: #14710A;
+  --dracula-cyan: #036A96;
+  --dracula-purple: #644AC9;
+  --dracula-pink: #A3144D;
+  --dracula-comment: #6C664B;
+}
+
+/* --- Dracula Classic (Dark Mode) --- */
+.dark {
+  --background: #282A36;
+  --foreground: #F8F8F2;
+  --card: #343746;
+  --card-foreground: #F8F8F2;
+  --popover: #282A36;
+  --popover-foreground: #F8F8F2;
+  --primary: #BD93F9;
+  --primary-foreground: #282A36;
+  --secondary: #44475A;
+  --secondary-foreground: #F8F8F2;
+  --muted: #44475A;
+  --muted-foreground: #6272A4;
+  --accent: #44475A;
+  --accent-foreground: #F8F8F2;
+  --destructive: #FF5555;
+  --border: #44475A;
+  --input: #44475A;
+  --ring: #BD93F9;
+  --chart-1: #BD93F9;
+  --chart-2: #50FA7B;
+  --chart-3: #8BE9FD;
+  --chart-4: #FFB86C;
+  --chart-5: #FF79C6;
+  --sidebar: #21222C;
+  --sidebar-foreground: #F8F8F2;
+  --sidebar-primary: #BD93F9;
+  --sidebar-primary-foreground: #282A36;
+  --sidebar-accent: #44475A;
+  --sidebar-accent-foreground: #F8F8F2;
+  --sidebar-border: #44475A;
+  --sidebar-ring: #BD93F9;
+
+  /* Dracula extended palette — for custom components */
+  --dracula-red: #FF5555;
+  --dracula-orange: #FFB86C;
+  --dracula-yellow: #F1FA8C;
+  --dracula-green: #50FA7B;
+  --dracula-cyan: #8BE9FD;
+  --dracula-purple: #BD93F9;
+  --dracula-pink: #FF79C6;
+  --dracula-comment: #6272A4;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Dracula palette as Tailwind utilities */
+  --color-dracula-red: var(--dracula-red);
+  --color-dracula-orange: var(--dracula-orange);
+  --color-dracula-yellow: var(--dracula-yellow);
+  --color-dracula-green: var(--dracula-green);
+  --color-dracula-cyan: var(--dracula-cyan);
+  --color-dracula-purple: var(--dracula-purple);
+  --color-dracula-pink: var(--dracula-pink);
+  --color-dracula-comment: var(--dracula-comment);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
