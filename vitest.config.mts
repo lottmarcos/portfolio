@@ -7,7 +7,11 @@ export default defineConfig({
     tsconfigPaths: true,
   },
   test: {
-    environment: "jsdom",
+    // Default to node — current tests are pure logic. Component tests can opt
+    // into jsdom per-file with `// @vitest-environment jsdom` once the broken
+    // jsdom dependency chain (html-encoding-sniffer → @exodus/bytes ESM) is
+    // resolved.
+    environment: "node",
     include: ["src/**/*.test.{ts,tsx}"],
     setupFiles: ["./src/test/setup.ts"],
   },
