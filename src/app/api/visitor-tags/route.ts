@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
   const limit = checkRateLimit(`visitor-tags:${clientIp(request)}`);
   if (!limit.ok) {
     return NextResponse.json(
-      { success: false, error: "Slow down a little — try again in a moment." },
+      { success: false, error: "Slow down a little, try again in a moment." },
       { status: 429, headers: { "Retry-After": String(limit.retryAfter) } }
     );
   }

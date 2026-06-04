@@ -3,7 +3,14 @@
  * files, no network payload. Each sound is a short, soft envelope so the
  * interactions feel tactile without being intrusive.
  */
-export type SoundName = "enter" | "hover" | "click" | "success" | "toggle";
+export type SoundName =
+  | "enter"
+  | "hover"
+  | "click"
+  | "success"
+  | "toggle"
+  | "zoom"
+  | "link";
 
 interface Note {
   freq: number;
@@ -52,6 +59,24 @@ const PRESETS: Record<SoundName, Preset> = {
     notes: [
       { freq: 220, start: 0, dur: 0.6 },
       { freq: 329.63, start: 0.04, dur: 0.6 },
+    ],
+  },
+  // Bright "open" pop for expanding the timeline photo.
+  zoom: {
+    type: "sine",
+    gain: 0.13,
+    notes: [
+      { freq: 783.99, start: 0, dur: 0.09 },
+      { freq: 1174.66, start: 0.05, dur: 0.14 },
+    ],
+  },
+  // Warm two-note for contact / connection links — distinct from a plain click.
+  link: {
+    type: "triangle",
+    gain: 0.11,
+    notes: [
+      { freq: 392, start: 0, dur: 0.11 },
+      { freq: 587.33, start: 0.06, dur: 0.16 },
     ],
   },
 };

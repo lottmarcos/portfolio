@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { getDictionary } from "@/lib/i18n/dictionaries";
+import { getLocale } from "@/lib/i18n/server";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
 
@@ -22,39 +24,46 @@ const hankenGrotesk = Hanken_Grotesk({
   weight: ["400", "500", "600", "700"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(siteConfig.url),
-  title: {
-    template: `%s — ${siteConfig.name}`,
-    default: `${siteConfig.name} — ${siteConfig.role}`,
-  },
-  description:
-    "Senior Software Engineer. Building systems with architectural clarity, visual taste, and pragmatic AI.",
-  authors: [{ name: siteConfig.name }],
-  creator: siteConfig.name,
-  openGraph: {
-    type: "website",
-    siteName: siteConfig.name,
-    title: `${siteConfig.name} — ${siteConfig.role}`,
-    description: siteConfig.tagline,
-    url: siteConfig.url,
-    locale: "en_US",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: `${siteConfig.name} — ${siteConfig.role}`,
-    description: siteConfig.tagline,
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const dict = getDictionary(locale);
+  const title = `${siteConfig.name} · ${dict.hero.overline.split(" · ")[0]}`;
 
-export default function RootLayout({
+  return {
+    metadataBase: new URL(siteConfig.url),
+    title: {
+      template: `%s · ${siteConfig.name}`,
+      default: title,
+    },
+    description: dict.meta.siteDescription,
+    authors: [{ name: siteConfig.name }],
+    creator: siteConfig.name,
+    openGraph: {
+      type: "website",
+      siteName: siteConfig.name,
+      title,
+      description: dict.meta.siteDescription,
+      url: siteConfig.url,
+      locale: locale === "pt" ? "pt_BR" : "en_US",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: dict.meta.siteDescription,
+    },
+  };
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+
   return (
     <html
-      lang="en"
+      lang={locale}
       className={`${hankenGrotesk.variable} ${fraunces.variable}`}
       suppressHydrationWarning
     >

@@ -3,6 +3,7 @@
 import { LoaderCircle, MapPin, RotateCw, Sparkles } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { useLanguage } from "@/components/i18n/language-provider";
 import { useSound } from "@/components/sound/sound-provider";
 import { EmojiPicker } from "@/components/visitor-tags/emoji-picker";
 import { DEFAULT_EMOJI } from "@/lib/emoji-data";
@@ -31,6 +32,7 @@ async function reverseGeocode(lat: number, lon: number): Promise<string | null> 
 
 export function VisitorTags() {
   const { play } = useSound();
+  const { t } = useLanguage();
   const [cities, setCities] = useState<CityTag[]>([]);
   const [emoji, setEmoji] = useState<string>(DEFAULT_EMOJI);
   const [submitted, setSubmitted] = useState(false);
@@ -136,7 +138,7 @@ export function VisitorTags() {
   return (
     <section aria-labelledby="visitor-tags-title" className="w-full">
       <h3 id="visitor-tags-title" className="text-overline mb-3">
-        Visitors around the world
+        {t.visitor.title}
       </h3>
 
       {cities.length > 0 && (
@@ -163,7 +165,7 @@ export function VisitorTags() {
           <div className="flex flex-wrap items-center gap-3">
             <p className="text-caption inline-flex items-center gap-1.5">
               <MapPin className="size-4 shrink-0" aria-hidden="true" />
-              I need your location to put you on the map 📍
+              {t.visitor.denied}
             </p>
             <button
               type="button"
@@ -172,13 +174,13 @@ export function VisitorTags() {
               className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-sm font-medium text-foreground transition-colors duration-200 hover:bg-muted"
             >
               <RotateCw className="size-3.5" aria-hidden="true" />
-              Try again
+              {t.visitor.retry}
             </button>
           </div>
         ) : submitted ? (
           <p className="text-caption inline-flex items-center gap-1.5">
             <Sparkles className="size-4 shrink-0 text-primary" aria-hidden="true" />
-            You&rsquo;re on the map. Thanks for stopping by.
+            {t.visitor.onMap}
           </p>
         ) : (
           <div className="flex items-center gap-2">
@@ -194,10 +196,10 @@ export function VisitorTags() {
                 <LoaderCircle className="size-4 animate-spin" aria-hidden="true" />
               )}
               {phase === "locating"
-                ? "Locating…"
+                ? t.visitor.locating
                 : phase === "submitting"
-                  ? "Saving…"
-                  : "Leave your mark"}
+                  ? t.visitor.saving
+                  : t.visitor.leaveMark}
             </button>
           </div>
         )}

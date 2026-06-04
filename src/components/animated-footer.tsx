@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { useLanguage } from "@/components/i18n/language-provider";
 import { SocialLinks } from "@/components/social-links";
 import { VisitorTags } from "@/components/visitor-tags/visitor-tags";
 import { siteConfig } from "@/lib/site-config";
@@ -9,6 +10,7 @@ import { siteConfig } from "@/lib/site-config";
 export function AnimatedFooter() {
   const ref = useRef<HTMLDivElement>(null);
   const [revealed, setRevealed] = useState(false);
+  const { t } = useLanguage();
   const year = new Date().getFullYear();
 
   useEffect(() => {
@@ -52,9 +54,7 @@ export function AnimatedFooter() {
         <div className="grid gap-12 md:grid-cols-2 md:gap-8">
           <div className="flex flex-col">
             <p className="text-overline mb-4">{siteConfig.name}</p>
-            <p className="text-h3 max-w-xs text-balance">
-              Built with clarity. Open to a good conversation.
-            </p>
+            <p className="text-h3 max-w-xs text-balance">{t.footer.tagline}</p>
             <div className="mt-6">
               <SocialLinks className="-ml-2.5" />
             </div>
@@ -66,9 +66,7 @@ export function AnimatedFooter() {
         </div>
 
         <div className="flex flex-col gap-1 text-muted-foreground">
-          <span className="text-caption">
-            Built with Next.js and a lot of coffee ☕
-          </span>
+          <span className="text-caption">{t.footer.credit}</span>
           <span className="text-caption tabular-nums">
             © {year} {siteConfig.name}
           </span>

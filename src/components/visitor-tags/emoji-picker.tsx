@@ -10,6 +10,7 @@ import {
   type KeyboardEvent,
 } from "react";
 
+import { useLanguage } from "@/components/i18n/language-provider";
 import { useSound } from "@/components/sound/sound-provider";
 import { EMOJI_GROUPS, searchEmojis } from "@/lib/emoji-data";
 
@@ -22,6 +23,7 @@ interface EmojiPickerProps {
 
 export function EmojiPicker({ value, onSelect }: EmojiPickerProps) {
   const { play } = useSound();
+  const { t } = useLanguage();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
@@ -31,10 +33,13 @@ export function EmojiPicker({ value, onSelect }: EmojiPickerProps) {
 
   const sections = useMemo(() => {
     if (query.trim()) {
-      return [{ id: "results", label: "Results", items: searchEmojis(query) }];
+      return [{ id: "results", items: searchEmojis(query) }];
     }
     return EMOJI_GROUPS;
   }, [query]);
+
+  const labelFor = (id: string) =>
+    id === "results" ? t.emoji.results : (t.emoji.categories[id] ?? id);
 
   const flat = useMemo(() => sections.flatMap((s) => s.items), [sections]);
 
@@ -117,7 +122,7 @@ export function EmojiPicker({ value, onSelect }: EmojiPickerProps) {
   return (
     <Popover.Root open={open} onOpenChange={setOpen}>
       <Popover.Trigger
-        aria-label={`Selected emoji: ${value}. Choose another`}
+        aria-label={`${t.emoji.pickLabel}: ${value}`}
         onMouseEnter={() => play("hover")}
         className="inline-flex size-11 shrink-0 items-center justify-center rounded-xl border border-border bg-background text-2xl leading-none transition-[transform,border-color,box-shadow] duration-200 ease-[var(--ease-spring)] hover:-translate-y-0.5 hover:border-primary/60 aria-expanded:border-primary aria-expanded:shadow-elevated"
       >
@@ -139,8 +144,8 @@ export function EmojiPicker({ value, onSelect }: EmojiPickerProps) {
                   value={query}
                   onChange={(e) => handleQueryChange(e.target.value)}
                   onKeyDown={handleSearchKeyDown}
-                  placeholder="Search emoji"
-                  aria-label="Search emoji"
+                  placeholder={t.emoji.search}
+                  aria-label={t.emoji.search}
                   className="h-9 w-full rounded-lg bg-muted pr-2 pl-8 text-sm text-foreground placeholder:text-muted-foreground focus-visible:outline-none"
                 />
               </div>
@@ -154,14 +159,14 @@ export function EmojiPicker({ value, onSelect }: EmojiPickerProps) {
             >
               {flat.length === 0 ? (
                 <p className="px-1 py-6 text-center text-sm text-muted-foreground">
-                  No emoji found.
+                  {t.emoji.noResults}
                 </p>
               ) : (
                 sections.map((section) =>
                   section.items.length === 0 ? null : (
                     <div key={section.id} className="mb-1">
                       <h3 className="text-overline sticky top-0 bg-popover px-1 py-1">
-                        {section.label}
+                        {labelFor(section.id)}
                       </h3>
                       <div className="grid grid-cols-8">
                         {section.items.map((item) => {
