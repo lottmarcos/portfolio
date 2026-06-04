@@ -16,11 +16,18 @@ export interface Dictionary {
   visitor: {
     title: string;
     leaveMark: string;
+    sendEmoji: string;
+    changeEmoji: string;
     locating: string;
     saving: string;
     denied: string;
     retry: string;
     onMap: string;
+    rateLimited: string;
+    rateLimitedRetry: string;
+    saveFailed: string;
+    saveFailedConfig: string;
+    saveFailedDb: string;
   };
   emoji: {
     search: string;
@@ -127,11 +134,18 @@ const en: Dictionary = {
   visitor: {
     title: "Visitors around the world",
     leaveMark: "Leave your mark",
+    sendEmoji: "Send emoji",
+    changeEmoji: "Change emoji",
     locating: "Locating…",
     saving: "Saving…",
     denied: "I need your location to put you on the map 📍",
     retry: "Try again",
     onMap: "You're on the map. Thanks for stopping by.",
+    rateLimited: "Slow down a little, try again in a moment.",
+    rateLimitedRetry: "Try again in {seconds}s.",
+    saveFailed: "Couldn't save your mark right now. Try again.",
+    saveFailedConfig: "Saving isn't available right now.",
+    saveFailedDb: "Couldn't save your mark right now. Please try again.",
   },
   emoji: {
     search: "Search emoji",
@@ -253,11 +267,18 @@ const pt: Dictionary = {
   visitor: {
     title: "Visitantes pelo mundo",
     leaveMark: "Deixe sua marca",
+    sendEmoji: "Mandar emoji",
+    changeEmoji: "Trocar emoji",
     locating: "Localizando…",
     saving: "Salvando…",
     denied: "Preciso da sua localização para te colocar no mapa 📍",
     retry: "Tentar de novo",
     onMap: "Você está no mapa. Valeu pela visita.",
+    rateLimited: "Calma aí — tenta de novo em instantes.",
+    rateLimitedRetry: "Tenta de novo em {seconds}s.",
+    saveFailed: "Não deu para salvar agora. Tenta de novo.",
+    saveFailedConfig: "O registro está indisponível no momento.",
+    saveFailedDb: "Não deu para salvar agora. Tente de novo em instantes.",
   },
   emoji: {
     search: "Buscar emoji",

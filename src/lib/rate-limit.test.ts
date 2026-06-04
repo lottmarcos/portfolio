@@ -1,26 +1,64 @@
 import { describe, expect, it } from "vitest";
 
-import { checkRateLimit } from "./rate-limit";
+import {
+  commitRateLimit,
+  peekRateLimit,
+  releaseRateLimit,
+} from "./rate-limit";
 
-describe("checkRateLimit", () => {
-  it("allows the first hit and blocks an immediate repeat", () => {
-    const key = `test-${Math.random()}`;
-    expect(checkRateLimit(key, 60_000).ok).toBe(true);
+describe("peekRateLimit + commitRateLimit", () => {
+  it("peek does not consume a slot; commit records after success", () => {
+    const key = `peek-${Math.random()}`;
+    const opts = { windowMs: 60_000, maxHits: 1 };
 
-    const blocked = checkRateLimit(key, 60_000);
-    expect(blocked.ok).toBe(false);
-    expect(blocked.retryAfter).toBeGreaterThan(0);
+    expect(peekRateLimit(key, opts).ok).toBe(true);
+    expect(peekRateLimit(key, opts).ok).toBe(true);
+
+    commitRateLimit(key, opts);
+
+    expect(peekRateLimit(key, opts).ok).toBe(false);
   });
 
-  it("allows again once the window has elapsed", () => {
-    const key = `test-${Math.random()}`;
-    expect(checkRateLimit(key, 10).ok).toBe(true);
+  it("failed attempts do not block when only commit is used", () => {
+    const key = `fail-${Math.random()}`;
+    const opts = { windowMs: 60_000, maxHits: 1 };
 
-    return new Promise<void>((resolve) => {
-      setTimeout(() => {
-        expect(checkRateLimit(key, 10).ok).toBe(true);
-        resolve();
-      }, 20);
-    });
+    expect(peekRateLimit(key, opts).ok).toBe(true);
+    expect(peekRateLimit(key, opts).ok).toBe(true);
+    expect(peekRateLimit(key, opts).ok).toBe(true);
+  });
+
+  it("allows up to maxHits after commits", () => {
+    const key = `multi-${Math.random()}`;
+    const opts = { windowMs: 60_000, maxHits: 3 };
+
+    expect(peekRateLimit(key, opts).ok).toBe(true);
+    commitRateLimit(key, opts);
+    expect(peekRateLimit(key, opts).ok).toBe(true);
+    commitRateLimit(key, opts);
+    expect(peekRateLimit(key, opts).ok).toBe(true);
+    commitRateLimit(key, opts);
+    expect(peekRateLimit(key, opts).ok).toBe(false);
+  });
+
+  it("uses separate keys independently", () => {
+    const a = `peek-a-${Math.random()}`;
+    const b = `peek-b-${Math.random()}`;
+    const opts = { windowMs: 60_000, maxHits: 1 };
+
+    commitRateLimit(a, opts);
+    expect(peekRateLimit(a, opts).ok).toBe(false);
+    expect(peekRateLimit(b, opts).ok).toBe(true);
+  });
+
+  it("release undoes a reserved hit so a failed attempt isn't counted", () => {
+    const key = `release-${Math.random()}`;
+    const opts = { windowMs: 60_000, maxHits: 1 };
+
+    commitRateLimit(key, opts);
+    expect(peekRateLimit(key, opts).ok).toBe(false);
+
+    releaseRateLimit(key, opts);
+    expect(peekRateLimit(key, opts).ok).toBe(true);
   });
 });

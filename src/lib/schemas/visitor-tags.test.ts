@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { isSingleEmoji, visitorTagSchema } from "./visitor-tags";
+import { isSingleEmoji, visitorMarkSchema } from "./visitor-tags";
 
 describe("isSingleEmoji", () => {
   it("accepts a single emoji", () => {
@@ -20,20 +20,43 @@ describe("isSingleEmoji", () => {
   });
 });
 
-describe("visitorTagSchema", () => {
-  it("accepts a valid payload and trims the city", () => {
-    const result = visitorTagSchema.safeParse({ city: "  São Paulo ", emoji: "🌊" });
-    expect(result.success).toBe(true);
-    if (result.success) expect(result.data.city).toBe("São Paulo");
+describe("visitorMarkSchema", () => {
+  it("rejects city and emoji together", () => {
+    const result = visitorMarkSchema.safeParse({ city: "  São Paulo ", emoji: "🌊" });
+    expect(result.success).toBe(false);
   });
 
-  it("rejects an empty city", () => {
-    expect(visitorTagSchema.safeParse({ city: "", emoji: "🌊" }).success).toBe(false);
+  it("accepts emoji swap fields", () => {
+    const result = visitorMarkSchema.safeParse({
+      emoji: "🎉",
+      previousEmoji: "👋",
+    });
+    expect(result.success).toBe(true);
+  });
+
+  it("accepts city only", () => {
+    const result = visitorMarkSchema.safeParse({ city: "Lisbon" });
+    expect(result.success).toBe(true);
+    if (result.success) expect(result.data.emoji).toBeUndefined();
+  });
+
+  it("accepts emoji only", () => {
+    const result = visitorMarkSchema.safeParse({ emoji: "🎉" });
+    expect(result.success).toBe(true);
+    if (result.success) expect(result.data.city).toBeUndefined();
+  });
+
+  it("rejects empty body", () => {
+    expect(visitorMarkSchema.safeParse({}).success).toBe(false);
+  });
+
+  it("rejects an empty city when provided", () => {
+    expect(visitorMarkSchema.safeParse({ city: "" }).success).toBe(false);
   });
 
   it("rejects a city longer than 100 chars", () => {
-    expect(
-      visitorTagSchema.safeParse({ city: "x".repeat(101), emoji: "🌊" }).success
-    ).toBe(false);
+    expect(visitorMarkSchema.safeParse({ city: "x".repeat(101) }).success).toBe(
+      false
+    );
   });
 });

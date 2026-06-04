@@ -183,6 +183,9 @@
   --dur-3: 400ms;
   --dur-4: 600ms;
 
+  /* About scroll-snap fallback; overridden on /about via ABOUT_SNAP_HEADER_OFFSET_PX */
+  --snap-header-offset: 5rem;
+
   /* --- Fluid type scale (clamp, from tokens.md) --- */
   --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.8125rem);
   --text-sm: clamp(0.8125rem, 0.75rem + 0.3125vw, 0.875rem);
@@ -442,6 +445,42 @@ body::after {
   *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ----------------------------------------------------------------------------
+   About page scroll-snap (enabled via html.about-snap on /about)
+   ---------------------------------------------------------------------------- */
+html.about-snap {
+  scroll-snap-type: y proximity;
+  scroll-padding-top: var(--snap-header-offset);
+}
+
+html.about-snap.about-snap--footer-mode,
+html.about-snap.about-snap--programmatic {
+  scroll-snap-type: none;
+}
+
+html.about-snap.about-snap--footer-mode .snap-section,
+html.about-snap.about-snap--footer-mode .snap-page-end {
+  scroll-snap-align: none;
+  scroll-snap-stop: normal;
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  scroll-margin-top: var(--snap-header-offset);
+}
+
+.snap-page-end {
+  scroll-snap-align: end;
+  scroll-snap-stop: always;
+  height: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.about-snap {
+    scroll-snap-type: none;
   }
 }
 

@@ -1,8 +1,13 @@
 "use client";
 
-import type { ReactNode } from "react";
+import { useEffect, type ReactNode } from "react";
 
+import { FooterEndSnap } from "@/components/footer-end-snap";
 import { useLanguage } from "@/components/i18n/language-provider";
+import {
+  ABOUT_SNAP_HEADER_OFFSET_CSS_VAR,
+  ABOUT_SNAP_HEADER_OFFSET_PX,
+} from "@/lib/about-scroll-snap-config";
 import { Reveal } from "@/components/reveal";
 import { Timeline } from "@/components/timeline";
 
@@ -31,10 +36,23 @@ function withHighlights(text: string, highlights: string[]): ReactNode {
 export function AboutContent() {
   const { t } = useLanguage();
 
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.add("about-snap");
+    root.style.setProperty(
+      ABOUT_SNAP_HEADER_OFFSET_CSS_VAR,
+      `${ABOUT_SNAP_HEADER_OFFSET_PX}px`
+    );
+    return () => {
+      root.classList.remove("about-snap");
+      root.style.removeProperty(ABOUT_SNAP_HEADER_OFFSET_CSS_VAR);
+    };
+  }, []);
+
   return (
     <div className="mx-auto w-full max-w-5xl px-6">
       {/* Hero — asymmetric: text leads, portrait anchors the right. */}
-      <section className="grid items-center gap-12 pt-16 pb-20 sm:pt-24 md:grid-cols-[1.15fr_0.85fr] md:gap-16">
+      <section className="snap-section grid items-center gap-12 pt-16 pb-20 sm:pt-24 md:grid-cols-[1.15fr_0.85fr] md:gap-16">
         <div>
           <Reveal delay={0}>
             <p className="text-overline mb-5">{t.hero.overline}</p>
@@ -53,9 +71,9 @@ export function AboutContent() {
       </section>
 
       {/* Bio */}
-      <section className="border-t border-border/60 py-16 sm:py-20">
+      <section className="snap-section border-t border-border/60 py-16 sm:py-20">
         <div className="grid gap-8 md:grid-cols-[0.28fr_0.72fr] md:gap-16">
-          <div className="md:sticky md:top-20 md:self-start">
+          <div className="md:sticky md:top-[var(--snap-header-offset)] md:self-start">
             <Reveal>
               <h2 className="text-overline md:pt-1.5">{t.bio.heading}</h2>
             </Reveal>
@@ -76,9 +94,9 @@ export function AboutContent() {
       <Timeline />
 
       {/* Stack */}
-      <section className="border-t border-border/60 py-16 sm:py-20">
+      <section className="snap-section border-t border-border/60 py-16 sm:py-20">
         <div className="grid gap-8 md:grid-cols-[0.28fr_0.72fr] md:gap-16">
-          <div className="md:sticky md:top-20 md:self-start">
+          <div className="md:sticky md:top-[var(--snap-header-offset)] md:self-start">
             <Reveal>
               <h2 className="text-overline md:pt-1">{t.stack.heading}</h2>
             </Reveal>
@@ -100,13 +118,16 @@ export function AboutContent() {
       </section>
 
       {/* Contact */}
-      <section className="border-t border-border/60 py-16 sm:py-24">
+      <section className="snap-section border-t border-border/60 py-16 sm:py-24">
         <Reveal>
           <h2 className="text-h2 mb-3 max-w-lg text-balance">{t.contact.heading}</h2>
           <p className="text-lead mb-8 max-w-md">{t.contact.lead}</p>
           <ContactActions />
         </Reveal>
       </section>
+
+      <div className="snap-page-end" aria-hidden="true" />
+      <FooterEndSnap />
     </div>
   );
 }

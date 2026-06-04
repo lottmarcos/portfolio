@@ -70,9 +70,9 @@ export function Timeline() {
   }
 
   return (
-    <section className="border-t border-border/60 py-16 sm:py-20">
+    <section className="snap-section border-t border-border/60 py-16 sm:py-20">
       <div className="grid gap-8 md:grid-cols-[0.28fr_0.72fr] md:gap-16">
-        <div className="md:sticky md:top-20 md:self-start">
+        <div className="md:sticky md:top-[var(--snap-header-offset)] md:self-start">
           <Reveal>
             <h2 className="text-overline md:pt-1">{t.timeline.heading}</h2>
           </Reveal>

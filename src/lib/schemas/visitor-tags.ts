@@ -1,12 +1,39 @@
 import { z } from "zod";
 
-/** Validate the POST body for /api/visitor-tags. */
-export const visitorTagSchema = z.object({
-  city: z.string().trim().min(1, "City is required.").max(100, "City is too long."),
-  emoji: z.string().min(1, "Emoji is required.").max(16, "Invalid emoji."),
-});
+const cityField = z
+  .string()
+  .trim()
+  .min(1, "City is required.")
+  .max(100, "City is too long.")
+  .optional();
 
-export type VisitorTagInput = z.infer<typeof visitorTagSchema>;
+const emojiField = z
+  .string()
+  .min(1, "Emoji is required.")
+  .max(16, "Invalid emoji.")
+  .optional();
+
+const previousEmojiField = z
+  .string()
+  .min(1, "Emoji is required.")
+  .max(16, "Invalid emoji.")
+  .optional();
+
+/** Validate the POST body for /api/visitor-tags (city or emoji, not both). */
+export const visitorMarkSchema = z
+  .object({
+    city: cityField,
+    emoji: emojiField,
+    previousEmoji: previousEmojiField,
+  })
+  .refine((data) => Boolean(data.city?.length || data.emoji?.length), {
+    message: "Provide a city or an emoji.",
+  })
+  .refine((data) => !(data.city?.length && data.emoji?.length), {
+    message: "City and emoji must be sent separately.",
+  });
+
+export type VisitorMarkInput = z.infer<typeof visitorMarkSchema>;
 
 /**
  * True when the string is exactly one user-perceived emoji grapheme.
