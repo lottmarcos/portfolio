@@ -3,13 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "node scripts/dev.mjs",
+    "dev:next": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "eslint . --max-warnings 0",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:reset": "supabase db reset",
+    "db:migrate": "supabase migration up",
+    "db:status": "supabase status",
+    "db:verify-visitor-tags": "node scripts/verify-visitor-tags-db.mjs",
+    "dev:db": "node scripts/dev.mjs",
+    "sync:ai": "node scripts/sync-ai-layer.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.5.0",
@@ -30,7 +39,7 @@
   },
   "engines": {
     "node": ">=24.15.0",
-    "yarn": ">=1.22.0"
+    "yarn": ">=4.3.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -44,8 +53,10 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
     "jsdom": "^29.1.1",
+    "supabase": "^2.105.0",
     "tailwindcss": "^4",
     "typescript": "^5",
     "vitest": "^4.1.7"
-  }
+  },
+  "packageManager": "yarn@4.3.0+sha512.1606bef7c84bc7d83b8576063de2fd08f7d69f9939015bed800f9585a002390268ecc777e9feeba7e26e9556aef6beaad4806968db2182ab5dd3e955ab3b9a0b"
 }

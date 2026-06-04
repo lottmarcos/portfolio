@@ -42,3 +42,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# duplicate Supabase skill install (canonical: .claude/skills, mirror: .cursor/skills)
+.agents/

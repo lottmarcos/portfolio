@@ -1,8 +1,8 @@
 # Skills Overview
 
-Skills provide persistent context that agents and developers reference during work. They live in `.claude/skills/` with a `SKILL.md` entry point and supporting markdown files.
+Skills provide persistent context that agents and developers reference during work. They live in `.claude/skills/` and `.cursor/skills/` (kept identical via `yarn sync:ai`), each with a `SKILL.md` entry point and supporting markdown files.
 
-## Available Skills
+## Project Skills
 
 ### portfolio-context
 
@@ -11,7 +11,7 @@ Skills provide persistent context that agents and developers reference during wo
 **Files**:
 - `profile.md` — Professional background and domain expertise.
 - `positioning.md` — Market differentiation and target audience.
-- `achievements.md` — Key accomplishments to highlight (placeholder — needs Marcos's input).
+- `achievements.md` — Key accomplishments to highlight.
 - `tone.md` — Voice and communication guidelines.
 - `stack.md` — Technology choices with rationale.
 
@@ -53,6 +53,22 @@ Skills provide persistent context that agents and developers reference during wo
 
 **Used by**: `engineering-orchestrator` for sign-off. All agents for self-review.
 
+## Vendor Skills (Supabase)
+
+Installed under `.claude/skills/`; mirror to `.cursor/skills/` with `yarn sync:ai`. Update via Supabase CLI/plugin reinstall, then sync.
+
+### supabase
+
+**Purpose**: Supabase products, auth, RLS, migrations, SSR (`@supabase/ssr`), CLI/MCP usage, security checklist.
+
+**Used by**: `fullstack-architect` for any Supabase task.
+
+### supabase-postgres-best-practices
+
+**Purpose**: Postgres performance — indexes, pooling, RLS performance, schema design (`references/*`).
+
+**Used by**: `fullstack-architect` when writing or reviewing SQL and schema.
+
 ## How Skills Differ from Agents
 
 | Aspect | Agents | Skills |
@@ -64,9 +80,16 @@ Skills provide persistent context that agents and developers reference during wo
 
 ## Maintaining Skills
 
-Skills should evolve as the project matures:
-
-- **Update** when standards change (new performance targets, revised accessibility requirements).
+- **Update** when standards change; run `yarn sync:ai` after editing `.claude/skills/` or `.cursor/skills/`.
 - **Add files** when a new domain needs codified standards.
-- **Remove** outdated guidance that no longer applies.
+- **Vendor skills**: Reinstall from Supabase when upstream changes; sync to `.cursor/`.
 - **Never duplicate** content between skills and agents — agents reference skills, not copy them.
+
+## Cursor vs Claude Paths
+
+| Tool | Skills path |
+|------|-------------|
+| Claude Code | `.claude/skills/<name>/` |
+| Cursor | `.cursor/skills/<name>/` |
+
+See [ADR-002](../architecture/decisions/002-dual-ai-tooling.md) and [cursor-workflow.md](cursor-workflow.md).

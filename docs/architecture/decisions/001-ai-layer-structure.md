@@ -85,3 +85,8 @@ Implement a three-agent architecture with four supporting skills:
 - Keep agents concise and reference skills rather than duplicating content.
 - Review and prune standards quarterly or after major milestones.
 - Standards describe defaults, not mandates — document deviations in ADRs rather than fighting the framework.
+
+## Amendment (2026-06)
+
+- Skills grew from four project skills to six (added vendor `supabase` and `supabase-postgres-best-practices`).
+- Cursor parity documented in [ADR-002](002-dual-ai-tooling.md) (`.cursor/` mirror + `yarn sync:ai`).

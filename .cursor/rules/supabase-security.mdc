@@ -1,0 +1,14 @@
+---
+description: Supabase client boundaries and server-only secrets
+globs: src/lib/supabase/**
+alwaysApply: false
+---
+
+# Supabase Security
+
+- `src/lib/supabase/admin.ts` is server-only — never import in Client Components or `"use client"` modules.
+- `SUPABASE_SERVICE_ROLE_KEY` only in server env (Route Handlers, Server Actions, Server Components).
+- Browser code uses `client.ts` with anon key only; SSR uses `server.ts` with cookies.
+- Enable RLS on exposed tables; never authorize via `user_metadata` in policies.
+
+Skills: `.cursor/skills/supabase/`. Setup: `docs/supabase.md`.

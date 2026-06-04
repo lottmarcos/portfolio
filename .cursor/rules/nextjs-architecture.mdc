@@ -1,0 +1,16 @@
+---
+description: Next.js App Router, proxy, and server-first patterns
+globs: src/app/**,src/lib/**,src/proxy.ts
+alwaysApply: false
+---
+
+# Next.js Architecture
+
+- Default to Server Components. Client components only for browser APIs, events, or local state.
+- Use App Router file conventions intentionally (`page`, `layout`, `loading`, `error` when needed).
+- Data fetching in Server Components; Server Actions for mutations with Zod validation.
+- Route Handlers sparingly (webhooks, proxies, special headers).
+- Caching: request memoization, Data Cache (`revalidate` / tags), Full Route Cache for static routes.
+- Session refresh via `src/proxy.ts` — not `middleware.ts`.
+
+Standards: `.cursor/skills/nextjs-fullstack-standards/`.

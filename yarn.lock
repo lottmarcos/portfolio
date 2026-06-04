@@ -1460,6 +1460,62 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@supabase/cli-darwin-arm64@npm:2.105.0":
+  version: 2.105.0
+  resolution: "@supabase/cli-darwin-arm64@npm:2.105.0"
+  conditions: os=darwin & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@supabase/cli-darwin-x64@npm:2.105.0":
+  version: 2.105.0
+  resolution: "@supabase/cli-darwin-x64@npm:2.105.0"
+  conditions: os=darwin & cpu=x64
+  languageName: node
+  linkType: hard
+
+"@supabase/cli-linux-arm64-musl@npm:2.105.0":
+  version: 2.105.0
+  resolution: "@supabase/cli-linux-arm64-musl@npm:2.105.0"
+  conditions: os=linux & cpu=arm64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@supabase/cli-linux-arm64@npm:2.105.0":
+  version: 2.105.0
+  resolution: "@supabase/cli-linux-arm64@npm:2.105.0"
+  conditions: os=linux & cpu=arm64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@supabase/cli-linux-x64-musl@npm:2.105.0":
+  version: 2.105.0
+  resolution: "@supabase/cli-linux-x64-musl@npm:2.105.0"
+  conditions: os=linux & cpu=x64 & libc=musl
+  languageName: node
+  linkType: hard
+
+"@supabase/cli-linux-x64@npm:2.105.0":
+  version: 2.105.0
+  resolution: "@supabase/cli-linux-x64@npm:2.105.0"
+  conditions: os=linux & cpu=x64 & libc=glibc
+  languageName: node
+  linkType: hard
+
+"@supabase/cli-windows-arm64@npm:2.105.0":
+  version: 2.105.0
+  resolution: "@supabase/cli-windows-arm64@npm:2.105.0"
+  conditions: os=win32 & cpu=arm64
+  languageName: node
+  linkType: hard
+
+"@supabase/cli-windows-x64@npm:2.105.0":
+  version: 2.105.0
+  resolution: "@supabase/cli-windows-x64@npm:2.105.0"
+  conditions: os=win32 & cpu=x64
+  languageName: node
+  linkType: hard
+
 "@supabase/functions-js@npm:2.107.0":
   version: 2.107.0
   resolution: "@supabase/functions-js@npm:2.107.0"
@@ -2543,6 +2599,13 @@ __metadata:
   version: 1.0.0
   resolution: "async-function@npm:1.0.0"
   checksum: 10c0/669a32c2cb7e45091330c680e92eaeb791bc1d4132d827591e499cd1f776ff5a873e77e5f92d0ce795a8d60f10761dec9ddfe7225a5de680f5d357f67b1aac73
+  languageName: node
+  linkType: hard
+
+"async-generator-function@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "async-generator-function@npm:1.0.0"
+  checksum: 10c0/2c50ef856c543ad500d8d8777d347e3c1ba623b93e99c9263ecc5f965c1b12d2a140e2ab6e43c3d0b85366110696f28114649411cbcd10b452a92a2318394186
   languageName: node
   linkType: hard
 
@@ -4201,20 +4264,23 @@ __metadata:
   linkType: hard
 
 "get-intrinsic@npm:^1.2.4, get-intrinsic@npm:^1.2.5, get-intrinsic@npm:^1.2.6, get-intrinsic@npm:^1.2.7, get-intrinsic@npm:^1.3.0":
-  version: 1.3.0
-  resolution: "get-intrinsic@npm:1.3.0"
+  version: 1.3.1
+  resolution: "get-intrinsic@npm:1.3.1"
   dependencies:
+    async-function: "npm:^1.0.0"
+    async-generator-function: "npm:^1.0.0"
     call-bind-apply-helpers: "npm:^1.0.2"
     es-define-property: "npm:^1.0.1"
     es-errors: "npm:^1.3.0"
     es-object-atoms: "npm:^1.1.1"
     function-bind: "npm:^1.1.2"
+    generator-function: "npm:^2.0.0"
     get-proto: "npm:^1.0.1"
     gopd: "npm:^1.2.0"
     has-symbols: "npm:^1.1.0"
     hasown: "npm:^2.0.2"
     math-intrinsics: "npm:^1.1.0"
-  checksum: 10c0/52c81808af9a8130f581e6a6a83e1ba4a9f703359e7a438d1369a5267a25412322f03dcbd7c549edaef0b6214a0630a28511d7df0130c93cfd380f4fa0b5b66a
+  checksum: 10c0/9f4ab0cf7efe0fd2c8185f52e6f637e708f3a112610c88869f8f041bb9ecc2ce44bf285dfdbdc6f4f7c277a5b88d8e94a432374d97cca22f3de7fc63795deb5d
   languageName: node
   linkType: hard
 
@@ -5844,9 +5910,9 @@ __metadata:
   linkType: hard
 
 "obug@npm:^2.1.1":
-  version: 2.1.1
-  resolution: "obug@npm:2.1.1"
-  checksum: 10c0/59dccd7de72a047e08f8649e94c1015ec72f94eefb6ddb57fb4812c4b425a813bc7e7cd30c9aca20db3c59abc3c85cc7a62bb656a968741d770f4e8e02bc2e78
+  version: 2.1.2
+  resolution: "obug@npm:2.1.2"
+  checksum: 10c0/e857080ef23c018bd4ad8553238cd97008cd4ab8472b4b83eafe75c19e9b6f84ac8fe53ef7f50b515a1dbf83e6372dd0b198aece33bc716edfa70366f6f6ed5e
   languageName: node
   linkType: hard
 
@@ -6122,6 +6188,7 @@ __metadata:
     react-dom: "npm:19.2.4"
     server-only: "npm:^0.0.1"
     shadcn: "npm:^4.8.1"
+    supabase: "npm:^2.105.0"
     tailwind-merge: "npm:^3.6.0"
     tailwindcss: "npm:^4"
     tw-animate-css: "npm:^1.4.0"
@@ -6614,11 +6681,11 @@ __metadata:
   linkType: hard
 
 "semver@npm:^7.3.5, semver@npm:^7.7.1, semver@npm:^7.7.3":
-  version: 7.8.1
-  resolution: "semver@npm:7.8.1"
+  version: 7.8.2
+  resolution: "semver@npm:7.8.2"
   bin:
     semver: bin/semver.js
-  checksum: 10c0/92d6871d6347e1f99d0ba396a70f2545ccf2a032cda3d378fa0699edf7506b5c6d266aed55c8b88e72bd91a30d2351e4f39db479375374430fcdc4b58f4e3c1a
+  checksum: 10c0/8e8c193fa75b938e5b3ccf6707c6447e4b34f73e493e72b03f3185393489f45e049144052f624217c346d6c6e0a301dda8eeab2f14413e337218ecb1cbd2de16
   languageName: node
   linkType: hard
 
@@ -7181,6 +7248,41 @@ __metadata:
   languageName: node
   linkType: hard
 
+"supabase@npm:^2.105.0":
+  version: 2.105.0
+  resolution: "supabase@npm:2.105.0"
+  dependencies:
+    "@supabase/cli-darwin-arm64": "npm:2.105.0"
+    "@supabase/cli-darwin-x64": "npm:2.105.0"
+    "@supabase/cli-linux-arm64": "npm:2.105.0"
+    "@supabase/cli-linux-arm64-musl": "npm:2.105.0"
+    "@supabase/cli-linux-x64": "npm:2.105.0"
+    "@supabase/cli-linux-x64-musl": "npm:2.105.0"
+    "@supabase/cli-windows-arm64": "npm:2.105.0"
+    "@supabase/cli-windows-x64": "npm:2.105.0"
+  dependenciesMeta:
+    "@supabase/cli-darwin-arm64":
+      optional: true
+    "@supabase/cli-darwin-x64":
+      optional: true
+    "@supabase/cli-linux-arm64":
+      optional: true
+    "@supabase/cli-linux-arm64-musl":
+      optional: true
+    "@supabase/cli-linux-x64":
+      optional: true
+    "@supabase/cli-linux-x64-musl":
+      optional: true
+    "@supabase/cli-windows-arm64":
+      optional: true
+    "@supabase/cli-windows-x64":
+      optional: true
+  bin:
+    supabase: dist/supabase.js
+  checksum: 10c0/669a12565613ccc3d1672f3da9cb99669b704ed240a77243fb584768894818a436a686b3146f923776b98a8f36d8f709e66f5edf296100e610cc98bbb4ee77eb
+  languageName: node
+  linkType: hard
+
 "supports-color@npm:^7.1.0":
   version: 7.2.0
   resolution: "supports-color@npm:7.2.0"
@@ -7542,9 +7644,9 @@ __metadata:
   linkType: hard
 
 "undici@npm:^7.25.0":
-  version: 7.27.0
-  resolution: "undici@npm:7.27.0"
-  checksum: 10c0/6fd15a81b0ca177b2667738b830ed175363e5e2164e992251d03aaee6c6517098b930085bd68b8fe5911920371076526657de035e07dc72377b9c5c731b90f0b
+  version: 7.27.1
+  resolution: "undici@npm:7.27.1"
+  checksum: 10c0/f88e75ca66e495899a4973ad7fe97713101c86307c0fb2001638332de6a24c68edde4395edb0024b7152a9499b1abeda42c923387fa5f14da51cf964b91d05a6
   languageName: node
   linkType: hard
 

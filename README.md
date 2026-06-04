@@ -28,12 +28,17 @@ Fill in the environment variables in `.env.local`:
 
 ### Development
 
+Requires [Docker Desktop](https://www.docker.com/products/docker-desktop/) for local Supabase (visitor tags).
+
 ```bash
-yarn dev          # Start dev server (Turbopack)
+yarn dev          # Local Supabase + Next.js (see docs/supabase.md)
+yarn dev:next     # Next.js only
 yarn build        # Production build
 yarn lint         # ESLint
 yarn typecheck    # TypeScript strict check
 ```
+
+`yarn dev` injects local Supabase URL and keys automatically; you do not need cloud keys in `.env.local` for local work.
 
 ### Theme
 

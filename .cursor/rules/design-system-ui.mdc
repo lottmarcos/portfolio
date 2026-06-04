@@ -1,0 +1,15 @@
+---
+description: Design tokens, accessibility, and UI consistency
+globs: "**/*.tsx,src/app/globals.css"
+alwaysApply: false
+---
+
+# Design System UI
+
+- All visual values through semantic tokens — no arbitrary colors, spacing, or font sizes.
+- WCAG 2.1 AA: contrast, keyboard, focus-visible, `prefers-reduced-motion`, 44px touch targets.
+- shadcn/ui: install on demand, customize to tokens, preserve accessibility primitives.
+- Avoid generic AI aesthetics (gratuitous gradients, identical card grids, decorative glow).
+- Responsive 320px–2560px. No Framer Motion unless CSS cannot achieve the effect.
+
+Standards: `.cursor/skills/design-system-standards/`. Human docs: `docs/design-system/`.

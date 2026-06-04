@@ -59,7 +59,7 @@ Significant decisions are documented as ADRs in `docs/architecture/decisions/`. 
 ```
 docs/architecture/decisions/
   001-ai-layer-structure.md
-  002-[next-decision].md
+  002-dual-ai-tooling.md
 ```
 
 Create an ADR when:
@@ -77,3 +77,17 @@ The `quality-gate` skill defines three checklists that apply at different stages
 3. **Before shipping**: `validation-checklist.md` — final sign-off checks.
 
 The `engineering-orchestrator` is configured to enforce these gates, but any developer or agent can reference them directly.
+
+## Claude Code vs Cursor
+
+| | Claude Code | Cursor |
+|---|-------------|--------|
+| Agents | `.claude/agents/` | `.cursor/agents/` |
+| Skills | `.claude/skills/` | `.cursor/skills/` |
+| Entry doc | `CLAUDE.md` | `AGENTS.md` |
+| Extra | — | `.cursor/rules/*.mdc`, Supabase MCP |
+
+Keep agents and skills in sync: `yarn sync:ai` (use `--reverse` when editing `.cursor/` first).
+
+- Cursor-specific guide: [cursor-workflow.md](cursor-workflow.md)
+- Dual-tooling decision: [ADR-002](../architecture/decisions/002-dual-ai-tooling.md)

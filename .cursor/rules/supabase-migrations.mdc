@@ -1,0 +1,15 @@
+---
+description: Supabase migrations, local DB, and CI workflow
+globs: supabase/**
+alwaysApply: false
+---
+
+# Supabase Migrations
+
+1. `supabase migration new <name>` → edit SQL under `supabase/migrations/`.
+2. `yarn db:reset` locally and smoke-test affected features.
+3. Merge to `main` — GitHub Actions runs `supabase db push` on production.
+
+Local keys from `yarn db:status` into `.env.local`. Preview deploys do not reach local Docker.
+
+Skills: `supabase`, `supabase-postgres-best-practices` under `.cursor/skills/`. Guide: `docs/supabase.md`.

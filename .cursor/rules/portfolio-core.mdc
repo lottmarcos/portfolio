@@ -1,0 +1,40 @@
+---
+description: Portfolio stack, commands, conventions, and quality gate summary
+alwaysApply: true
+---
+
+# Portfolio Core
+
+Personal brand platform (Next.js 16+, React 19, TypeScript strict, Tailwind v4, shadcn/ui, Dracula/Alucard palette, Supabase, Vercel).
+
+## Commands
+
+```bash
+yarn dev          # Local Supabase + Next.js (sequential)
+yarn dev:next     # Next.js only
+yarn db:start     # Start local Supabase
+yarn db:reset     # Reset local DB (migrations + seed)
+yarn build && yarn lint && yarn typecheck && yarn test
+yarn sync:ai      # Mirror .claude/agents+skills <-> .cursor/agents+skills
+```
+
+Database setup: `docs/supabase.md`. AI workflow (Cursor): `docs/ai/cursor-workflow.md`.
+
+## Conventions
+
+- Server Components by default; `"use client"` only when needed.
+- Design values via tokens only — no hardcoded colors, spacing, or font sizes.
+- WCAG 2.1 AA minimum. No external state libraries.
+- Prefer editing existing files. No comments unless the "why" is non-obvious.
+- No premature abstractions. `SUPABASE_SERVICE_ROLE_KEY` and `admin.ts` are server-only.
+- Next.js 16 uses `proxy.ts` instead of `middleware.ts`.
+
+## Quality Gate (before merge)
+
+1. Lighthouse Performance and Accessibility > 95.
+2. Keyboard-navigable interactive elements with visible focus.
+3. Contrast 4.5:1 text, 3:1 UI components.
+4. Viewport 320px–2560px.
+5. First Load JS < 100kB per route.
+
+Full checklists: `.cursor/skills/quality-gate/`.

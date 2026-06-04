@@ -1,6 +1,6 @@
 # Agents Overview
 
-This project uses three custom Claude Code agents with clear separation of concerns. They live in `.claude/agents/` and are invoked as subagents during development.
+This project uses three custom agents with clear separation of concerns. They live in `.claude/agents/` (Claude Code) and `.cursor/agents/` (Cursor), kept identical via `yarn sync:ai`.
 
 ## Agent Roster
 
@@ -22,13 +22,14 @@ This project uses three custom Claude Code agents with clear separation of conce
 
 **Role**: Architecture specialist. Owns the Next.js application structure.
 
-**When to use**: For decisions about routing, data fetching, caching, API design, performance optimization, SEO, or deployment configuration.
+**When to use**: For decisions about routing, data fetching, caching, API design, performance optimization, SEO, deployment, Supabase schema/migrations, RLS, or Postgres performance.
 
 **What it does**:
 - Defines App Router structure and file conventions.
 - Decides Server vs. Client component boundaries.
 - Implements caching and revalidation strategies.
 - Applies performance budgets and optimization techniques.
+- Owns `supabase/migrations/`, `src/lib/supabase/`, and Supabase skills (`supabase`, `supabase-postgres-best-practices`).
 
 **What it does NOT do**: Make design system decisions (colors, tokens, component visual styling).
 
@@ -54,7 +55,7 @@ User Request
      ▼
 engineering-orchestrator
      │
-     ├──► fullstack-architect    (architecture, data, performance)
+     ├──► fullstack-architect    (architecture, data, Supabase, performance)
      │
      └──► design-system-architect (visual, components, accessibility)
      │
@@ -73,4 +74,8 @@ If the project grows to need a new specialist (e.g., content strategy, DevOps), 
 3. Anti-patterns list.
 4. References to relevant skills.
 
-Update the orchestrator's delegation table to include the new agent.
+Update the orchestrator's delegation table to include the new agent. Run `yarn sync:ai` to mirror into `.cursor/agents/`.
+
+## Cursor
+
+Same agent files under `.cursor/agents/`. Invoke via Task (`subagent_type`) or by name. See [cursor-workflow.md](cursor-workflow.md) and [ADR-002](../architecture/decisions/002-dual-ai-tooling.md).

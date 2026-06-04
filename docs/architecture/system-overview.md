@@ -24,7 +24,7 @@ A personal portfolio and brand platform for Marcos Lott. Built with Next.js, it 
 │  │                                       │   │
 │  │  ┌─────────────────────────────────┐   │   │
 │  │  │        Data Layer               │   │   │
-│  │  │  Static data → MDX → (CMS?)     │   │   │
+│  │  │  Supabase (Postgres + RLS)      │   │   │
 │  │  └─────────────────────────────────┘   │   │
 │  └───────────────────────────────────────┘   │
 └─────────────────────────────────────────────┘
@@ -39,7 +39,7 @@ A personal portfolio and brand platform for Marcos Lott. Built with Next.js, it 
 | Styling | Tailwind CSS v4 | No runtime overhead, utility-first, design token support |
 | Components | shadcn/ui | Accessible primitives, full source ownership |
 | State management | React primitives only | No external libraries needed for portfolio complexity |
-| Data source | Static TypeScript → MDX | Start simple, add complexity when needed |
+| Data source | Supabase (Postgres) + static/TS where appropriate | Visitor tags and future features; local Docker via `yarn db:start` |
 | Deployment | Vercel | Native Next.js support, zero-config |
 
 ## Data Flow
@@ -52,15 +52,17 @@ A personal portfolio and brand platform for Marcos Lott. Built with Next.js, it 
 
 ## What's Not Here (Yet)
 
-These are intentionally deferred until a concrete need arises:
-
-- **Database**: No persistence layer needed for static content.
-- **Authentication**: No user accounts or protected routes.
+- **Authentication**: No user accounts or protected routes (Supabase auth-ready).
 - **CMS**: Content lives in the repo until scale demands otherwise.
 - **Analytics**: Vercel Analytics when the site is live.
-- **Testing framework**: Will be chosen when the first testable feature is built.
+
+## Testing
+
+Vitest for unit tests (`yarn test`). See `quality-gate` skill for broader validation.
 
 ## Related Documents
 
-- [ADR-001: AI Layer Structure](decisions/001-ai-layer-structure.md) — Why the project uses custom agents and skills.
-- [Stack Rationale](../../.claude/skills/portfolio-context/stack.md) — Detailed justification for each technology choice.
+- [ADR-001: AI Layer Structure](decisions/001-ai-layer-structure.md) — Agents and skills (extended to six skills; see ADR-002 for Cursor).
+- [ADR-002: Dual AI Tooling](decisions/002-dual-ai-tooling.md) — Claude Code + Cursor parity.
+- [Supabase setup](../supabase.md) — Local DB, migrations, production CI.
+- [Stack Rationale](../../.claude/skills/portfolio-context/stack.md) — Technology justification.

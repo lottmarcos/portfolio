@@ -25,33 +25,47 @@ src/
   proxy.ts       # Request proxy (Supabase session refresh)
 docs/            # Architecture decisions, design system docs, AI workflow docs
 .claude/
-  agents/        # Custom Claude Code agents (orchestrator, fullstack, design-system)
-  skills/        # Context skills (portfolio-context, nextjs, design-system, quality-gate)
+  agents/        # Custom agents (orchestrator, fullstack, design-system)
+  skills/        # Context skills (see AI Workflow below)
+.cursor/         # Cursor mirror — run yarn sync:ai after editing .claude agents/skills
 ```
 
 ## Commands
 
 ```bash
-yarn dev          # Start dev server (Turbopack)
+yarn dev          # Local Supabase + Next.js (Turbopack); keys from supabase status
+yarn dev:next     # Next.js only (no Supabase start)
+yarn db:start     # Start local Supabase and apply migrations
+yarn db:reset     # Reset local DB (migrations + seed)
 yarn build        # Production build
 yarn lint         # ESLint (zero warnings)
 yarn typecheck    # TypeScript strict check
+yarn test         # Vitest unit tests
+yarn sync:ai      # Mirror .claude <-> .cursor agents and skills
 ```
+
+See `docs/supabase.md` for local vs production database setup.
 
 ## AI Workflow
 
 This project uses three custom agents with clear separation of concerns:
 
 - **engineering-orchestrator**: Task decomposition, delegation, trade-off enforcement. Start here for complex work.
-- **fullstack-architect**: Next.js architecture, data layer, API design, caching, performance, SEO.
+- **fullstack-architect**: Next.js architecture, Supabase, data layer, API design, caching, performance, SEO.
 - **design-system-architect**: Tokens, components, typography, color, accessibility, visual consistency.
 
-Four skills provide shared context:
+Six skills provide shared context:
 
-- **portfolio-context**: Who Marcos is, positioning, achievements, tone of voice, stack rationale.
-- **nextjs-fullstack-standards**: Architecture, API, data layer, performance, and SEO guidelines.
-- **design-system-standards**: Token system, component patterns, accessibility, visual direction.
-- **quality-gate**: Testing, PR review, and validation checklists.
+| Skill | Type |
+|-------|------|
+| portfolio-context | Project |
+| nextjs-fullstack-standards | Project |
+| design-system-standards | Project |
+| quality-gate | Project |
+| supabase | Vendor (Supabase) |
+| supabase-postgres-best-practices | Vendor (Supabase) |
+
+After editing agents or skills, run `yarn sync:ai` to update `.cursor/`. Cursor also uses `AGENTS.md`, `.cursor/rules/`, and Supabase MCP (`.cursor/mcp.json`). See `docs/ai/cursor-workflow.md`.
 
 ## Conventions
 
