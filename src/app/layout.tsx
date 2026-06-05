@@ -28,6 +28,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
   const dict = getDictionary(locale);
   const title = `${siteConfig.name} · ${dict.hero.overline.split(" · ")[0]}`;
+  const ogLocale = locale === "pt" ? "pt_BR" : "en_US";
+  const ogAlternateLocale = locale === "pt" ? "en_US" : "pt_BR";
 
   return {
     metadataBase: new URL(siteConfig.url),
@@ -44,13 +46,33 @@ export async function generateMetadata(): Promise<Metadata> {
       title,
       description: dict.meta.siteDescription,
       url: siteConfig.url,
-      locale: locale === "pt" ? "pt_BR" : "en_US",
+      locale: ogLocale,
+      alternateLocale: [ogAlternateLocale],
+      images: [
+        {
+          url: siteConfig.ogImage.path,
+          width: siteConfig.ogImage.width,
+          height: siteConfig.ogImage.height,
+          type: siteConfig.ogImage.type,
+          alt: dict.meta.ogImageAlt,
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title,
       description: dict.meta.siteDescription,
+      images: [siteConfig.ogImage.path],
     },
+    icons: {
+      icon: [
+        { url: "/favicon.ico", sizes: "any" },
+        { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+        { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+      ],
+      apple: "/apple-touch-icon.png",
+    },
+    manifest: "/site.webmanifest",
   };
 }
 
@@ -64,13 +86,23 @@ export default async function RootLayout({
   return (
     <html
       lang={locale}
-      className={`${hankenGrotesk.variable} ${fraunces.variable}`}
+      className={`dark ${hankenGrotesk.variable} ${fraunces.variable}`}
       suppressHydrationWarning
     >
-      <body className="min-h-dvh bg-background text-foreground antialiased">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var d=document.documentElement;var t=localStorage.getItem('theme');if(t==='light')d.classList.remove('dark');else d.classList.add('dark')}catch(e){}})();`,
+          }}
+        />
+      </head>
+      <body
+        className="min-h-dvh bg-background text-foreground antialiased"
+        suppressHydrationWarning
+      >
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >

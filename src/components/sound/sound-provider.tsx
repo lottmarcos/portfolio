@@ -28,8 +28,8 @@ interface AudioWindow {
 }
 
 export function SoundProvider({ children }: { children: ReactNode }) {
-  // Default off: sound is opt-in and browsers block audio before a gesture anyway.
-  const [enabled, setEnabledState] = useState(false);
+  // Default on; AudioContext stays lazy until the first play() after interaction.
+  const [enabled, setEnabledState] = useState(true);
   const contextRef = useRef<AudioContext | null>(null);
 
   useEffect(() => {

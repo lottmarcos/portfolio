@@ -43,27 +43,33 @@ export interface Dictionary {
     switchLanguage: string;
     expandPhoto: string;
   };
-  meta: { aboutTitle: string; aboutDescription: string; siteDescription: string };
+  meta: {
+    aboutTitle: string;
+    aboutDescription: string;
+    siteDescription: string;
+    ogImageAlt: string;
+  };
 }
 
 const en: Dictionary = {
   nav: { about: "About", home: "home" },
   hero: {
     overline: "Software Engineer · Brazil",
-    headline: "I build high-trust interfaces and memorable experiences.",
+    headline: "I build high-trust experiences for complex products.",
     tagline:
-      "Frontend engineer focused on React and TypeScript. Real-time fintech is where I sharpened the craft, and I bring that same care to every product I build.",
+      "Frontend engineer focused on React, TypeScript, architecture, and real-time financial experiences. I care about the point where product clarity, performance, and technical decisions become user trust.",
     portraitAlt: "Marcos Lott presenting at Avenue",
   },
   bio: {
     heading: "Who I am",
     paragraphs: [
-      "I'm a frontend engineer focused on the space between product and systems. At Avenue I work on investment and trading flows across equities, ETFs, funds, fixed income, and UCITS, supporting $620M+ in monthly volume and 200k+ orders a month.",
-      "My core is React and TypeScript, but the interesting problems are rarely just UI. Real-time data, resilient streaming, typed state, and design systems that survive change. I architected and shipped UCITS Web, a European funds trading experience that generated $161k in commissions in its first four months.",
-      "I treat AI as engineering leverage, not a shortcut. I've used Cursor and Claude to accelerate a real design system migration while keeping standards, review, and architecture in human hands.",
-      "And I care about the details that never show up in a diff. The easing on a transition, the contrast ratio in dark mode, the latency a person actually feels.",
+      "I’m a frontend engineer working at the intersection of product, architecture, and user experience. Today I build investment and trading flows used by thousands of people, supporting more than $620M in monthly transaction volume and more than 200k orders a month.",
+      "Over time, working on financial products taught me that frontend is not just a visual layer. It is where business rules, state, real-time data, performance, and trust come together in the user experience.",
+      "That context changed the way I think about engineering. I started looking less at isolated components and more at systems: how a state decision affects an entire flow, how an interface communicates risk, how architecture reduces ambiguity, and how technical quality sustains speed over time.",
+      "This mindset has shaped my work on trading experiences, real-time data, state modernization, design systems, and AI tools applied to software development. I use AI as engineering leverage, not as a shortcut, keeping standards, review, and architecture in human hands.",
+      "Beyond building software, I share what I learn about frontend, architecture, AI, and career. I want to help other developers grow with more clarity, not by pretending there is a perfect path, but by making the thinking behind good engineering easier to see.",
     ],
-    highlights: ["UCITS Web", "engineering leverage"],
+    highlights: ["high-trust experiences", "systems thinking", "engineering clarity"],
   },
   timeline: {
     heading: "Timeline",
@@ -72,39 +78,39 @@ const en: Dictionary = {
     entries: {
       ufmg: {
         title: "Started at UFMG",
-        desc: "Began Information Systems at the Federal University of Minas Gerais, the largest CS university in Latin America.",
+        desc: "Began Information Systems at the Federal University of Minas Gerais, where I built the foundation for how I think about software, systems, and product.",
       },
       formulaTesla: {
         title: "Joined Fórmula Tesla",
-        desc: "Built software as a full stack developer on the electric racing team.",
+        desc: "Built full stack software for an electric racing team, connecting engineering requirements with tools people could actually use.",
       },
       dito: {
         title: "Joined Dito CRM",
-        desc: "Started as a frontend developer on a CRM and marketing platform.",
+        desc: "Worked on CRM and marketing products, building experiences for data, segmentation, permissions, and customer behavior analysis.",
       },
       tdc2023: {
         title: "TDC 2023",
-        desc: "Attended The Developers Conference for the first time.",
+        desc: "Attended The Developers Conference for the first time and got closer to the engineering community beyond daily work.",
       },
       avenue: {
         title: "Joined Avenue",
-        desc: "Started as a frontend engineer on investment and trading products.",
+        desc: "Started building investment and trading experiences in a fintech environment where clarity, reliability, and trust matter every day.",
       },
       braziljs: {
         title: "BrazilJS",
-        desc: "Attending BrazilJS was a milestone for me.",
+        desc: "A milestone that strengthened my interest in frontend, community, and the craft behind building better experiences.",
       },
       tdcBts: {
         title: "TDC, backstage",
-        desc: "Helped build one of the conference talks behind the scenes.",
+        desc: "Helped shape one of the conference talks behind the scenes, learning how strong technical ideas become clear narratives.",
       },
       graduation: {
         title: "Graduated",
-        desc: "Finished my degree in Information Systems.",
+        desc: "Finished my degree in Information Systems and kept building toward an international engineering career.",
       },
       building: {
-        title: "Yet building 🔧",
-        desc: "The story continues.",
+        title: "Still building 🔧",
+        desc: "The work continues: better systems, clearer writing, stronger products, and more useful things to share with other developers.",
       },
     },
   },
@@ -120,16 +126,16 @@ const en: Dictionary = {
       "Node.js",
       "AI-assisted workflows",
     ],
-    caption: "A pragmatic toolkit, chosen per problem, not per trend.",
+    caption: "A practical toolkit for building clear, reliable, and scalable experiences.",
   },
   contact: {
-    heading: "Have a problem worth solving?",
-    lead: "I'm open to international teams that care about craft, from frontend to real-time systems and product engineering.",
+    heading: "Want to talk about tech?",
+    lead: "I'm interested in talking about complex products, architecture, technical quality, AI applied to development, and tech career.",
     cta: "Get in touch",
   },
   footer: {
-    tagline: "Built with clarity. Open to a good conversation.",
-    credit: "Built with Next.js and a lot of coffee ☕",
+    tagline: "Building high-trust experiences, learning in public, and sharing the path with other developers.",
+    credit: "Built with Next.js, coffee, and a few healthy technical obsessions ☕",
   },
   visitor: {
     title: "Visitors around the world",
@@ -140,12 +146,12 @@ const en: Dictionary = {
     saving: "Saving…",
     denied: "I need your location to put you on the map 📍",
     retry: "Try again",
-    onMap: "You're on the map. Thanks for stopping by.",
-    rateLimited: "Slow down a little, try again in a moment.",
+    onMap: "You’re on the map. Thanks for stopping by.",
+    rateLimited: "Slow down a little. Try again in a moment.",
     rateLimitedRetry: "Try again in {seconds}s.",
-    saveFailed: "Couldn't save your mark right now. Try again.",
-    saveFailedConfig: "Saving isn't available right now.",
-    saveFailedDb: "Couldn't save your mark right now. Please try again.",
+    saveFailed: "Couldn’t save your mark right now. Try again.",
+    saveFailedConfig: "Saving isn’t available right now.",
+    saveFailedDb: "Couldn’t save your mark right now. Please try again.",
   },
   emoji: {
     search: "Search emoji",
@@ -155,9 +161,9 @@ const en: Dictionary = {
     categories: {
       smileys: "Smileys",
       gestures: "People",
-      nature: "Animals & Nature",
-      food: "Food & Drink",
-      travel: "Travel & Places",
+      nature: "Animals and Nature",
+      food: "Food and Drink",
+      travel: "Travel and Places",
       activities: "Activities",
       objects: "Objects",
       symbols: "Symbols",
@@ -173,9 +179,10 @@ const en: Dictionary = {
   meta: {
     aboutTitle: "About",
     aboutDescription:
-      "Frontend engineer building high-trust interfaces and memorable experiences with React and TypeScript.",
+      "Frontend engineer building high-trust experiences for complex products with React, TypeScript, architecture, and real-time data.",
     siteDescription:
-      "Software Engineer. High-trust interfaces, memorable experiences, and AI-assisted engineering.",
+      "Marcos Lott, Software Engineer from Brazil. I build high-trust experiences for complex products with React, TypeScript, architecture, and real-time financial experiences.",
+    ogImageAlt: "Marcos Lott monogram, software engineering",
   },
 };
 
@@ -183,20 +190,21 @@ const pt: Dictionary = {
   nav: { about: "Sobre", home: "início" },
   hero: {
     overline: "Engenheiro de Software · Brasil",
-    headline: "Construo interfaces de alta confiança e experiências marcantes.",
+    headline: "Construo experiências de alta confiança para produtos complexos.",
     tagline:
-      "Engenheiro frontend focado em React e TypeScript. A fintech em tempo real foi onde afiei o ofício, e levo o mesmo cuidado para todo produto que construo.",
+      "Engenheiro frontend focado em React, TypeScript, arquitetura e experiências financeiras em tempo real. Me interesso pelo ponto em que clareza de produto, performance e decisões técnicas viram confiança para quem usa.",
     portraitAlt: "Marcos Lott apresentando na Avenue",
   },
   bio: {
     heading: "Quem sou",
     paragraphs: [
-      "Sou engenheiro frontend focado no espaço entre produto e sistemas. Na Avenue trabalho em fluxos de investimento e trading entre ações, ETFs, fundos, renda fixa e UCITS, sustentando mais de US$ 620M em volume mensal e 200 mil ordens por mês.",
-      "Meu núcleo é React e TypeScript, mas os problemas interessantes raramente são só de interface. Dados em tempo real, streaming resiliente, estado tipado e design systems que sobrevivem a mudanças. Arquitetei e entreguei o UCITS Web, uma experiência de negociação de fundos europeus que gerou US$ 161 mil em comissões nos primeiros quatro meses.",
-      "Trato IA como alavanca de engenharia, não como atalho. Usei Cursor e Claude para acelerar uma migração real de design system mantendo padrões, revisão e arquitetura sob controle humano.",
-      "E cuido dos detalhes que nunca aparecem num diff. A curva de uma transição, o contraste no modo escuro, a latência que a pessoa realmente sente.",
+      "Sou engenheiro frontend e trabalho na interseção entre produto, arquitetura e experiência do usuário. Hoje construo fluxos de investimento e trading usados por milhares de pessoas, sustentando mais de US$ 620M em volume mensal e mais de 200 mil ordens por mês.",
+      "Com o tempo, trabalhar em produtos financeiros me ensinou que frontend não é só uma camada visual. É onde regras de negócio, estados, dados em tempo real, performance e confiança se encontram na experiência do usuário.",
+      "Esse contexto mudou a forma como eu penso engenharia. Passei a olhar menos para componentes isolados e mais para sistemas: como uma decisão de estado afeta o fluxo inteiro, como uma interface comunica risco, como arquitetura reduz ambiguidade e como qualidade técnica sustenta velocidade no longo prazo.",
+      "Essa mentalidade moldou meu trabalho em experiências de trading, dados em tempo real, modernização de estado, design systems e ferramentas de IA aplicadas ao desenvolvimento. Uso IA como alavanca de engenharia, não como atalho, mantendo padrões, revisão e arquitetura sob controle humano.",
+      "Além de construir software, eu compartilho o que aprendo sobre frontend, arquitetura, IA e carreira. Quero ajudar outros devs a crescerem com mais clareza, não fingindo que existe um caminho perfeito, mas tornando mais visível o raciocínio por trás de uma boa engenharia.",
     ],
-    highlights: ["UCITS Web", "alavanca de engenharia"],
+    highlights: ["experiências de alta confiança", "pensamento sistêmico", "clareza técnica"],
   },
   timeline: {
     heading: "Trajetória",
@@ -205,39 +213,39 @@ const pt: Dictionary = {
     entries: {
       ufmg: {
         title: "Entrei na UFMG",
-        desc: "Comecei Sistemas de Informação na Universidade Federal de Minas Gerais, a maior universidade de CS da América Latina.",
+        desc: "Comecei Sistemas de Informação na Universidade Federal de Minas Gerais, onde construí a base da forma como penso software, sistemas e produto.",
       },
       formulaTesla: {
         title: "Entrei na Fórmula Tesla",
-        desc: "Desenvolvi software como full stack na equipe de corrida elétrica.",
+        desc: "Desenvolvi software full stack para uma equipe de corrida elétrica, conectando requisitos de engenharia com ferramentas úteis para o time.",
       },
       dito: {
         title: "Entrei na Dito CRM",
-        desc: "Comecei como desenvolvedor frontend numa plataforma de CRM e marketing.",
+        desc: "Trabalhei em produtos de CRM e marketing, construindo experiências para dados, segmentação, permissões e análise de comportamento de clientes.",
       },
       tdc2023: {
         title: "TDC 2023",
-        desc: "Assisti ao The Developers Conference pela primeira vez.",
+        desc: "Participei do The Developers Conference pela primeira vez e me aproximei mais da comunidade de engenharia para além do trabalho diário.",
       },
       avenue: {
         title: "Entrei na Avenue",
-        desc: "Comecei como engenheiro frontend em produtos de investimento e trading.",
+        desc: "Comecei a construir experiências de investimento e trading em uma fintech onde clareza, confiabilidade e confiança importam todos os dias.",
       },
       braziljs: {
         title: "BrazilJS",
-        desc: "Participar do BrazilJS foi um marco na minha vida.",
+        desc: "Um marco que fortaleceu meu interesse por frontend, comunidade e pelo ofício de construir experiências melhores.",
       },
       tdcBts: {
         title: "TDC, nos bastidores",
-        desc: "Ajudei a construir uma das apresentações da conferência.",
+        desc: "Ajudei a estruturar uma das apresentações da conferência, aprendendo como boas ideias técnicas se transformam em narrativas claras.",
       },
       graduation: {
         title: "Me formei",
-        desc: "Concluí a graduação em Sistemas de Informação.",
+        desc: "Concluí a graduação em Sistemas de Informação e continuei construindo caminho para uma carreira internacional em engenharia.",
       },
       building: {
         title: "Ainda construindo 🔧",
-        desc: "A história continua.",
+        desc: "O trabalho continua: sistemas melhores, escrita mais clara, produtos mais fortes e coisas mais úteis para compartilhar com outros devs.",
       },
     },
   },
@@ -253,16 +261,16 @@ const pt: Dictionary = {
       "Node.js",
       "Fluxos com IA",
     ],
-    caption: "Um conjunto pragmático, escolhido por problema, não por tendência.",
+    caption: "Um conjunto prático para construir experiências claras, confiáveis e escaláveis.",
   },
   contact: {
-    heading: "Tem um problema que vale a pena resolver?",
-    lead: "Estou aberto a times internacionais que valorizam qualidade, do frontend a sistemas em tempo real e engenharia de produto.",
+    heading: "Quer trocar uma ideia sobre tecnologia?",
+    lead: "Gosto de conversar sobre produtos complexos, arquitetura, qualidade técnica, IA aplicada ao desenvolvimento e carreira tech.",
     cta: "Vamos conversar",
   },
   footer: {
-    tagline: "Feito com clareza. Aberto a uma boa conversa.",
-    credit: "Feito com Next.js e muito café ☕",
+    tagline: "Construindo experiências de alta confiança, aprendendo em público e compartilhando o caminho com outros devs.",
+    credit: "Feito com Next.js, café e algumas boas obsessões técnicas ☕",
   },
   visitor: {
     title: "Visitantes pelo mundo",
@@ -274,7 +282,7 @@ const pt: Dictionary = {
     denied: "Preciso da sua localização para te colocar no mapa 📍",
     retry: "Tentar de novo",
     onMap: "Você está no mapa. Valeu pela visita.",
-    rateLimited: "Calma aí — tenta de novo em instantes.",
+    rateLimited: "Calma aí. Tenta de novo em instantes.",
     rateLimitedRetry: "Tenta de novo em {seconds}s.",
     saveFailed: "Não deu para salvar agora. Tenta de novo.",
     saveFailedConfig: "O registro está indisponível no momento.",
@@ -288,9 +296,9 @@ const pt: Dictionary = {
     categories: {
       smileys: "Smileys",
       gestures: "Pessoas",
-      nature: "Animais & Natureza",
-      food: "Comida & Bebida",
-      travel: "Viagem & Lugares",
+      nature: "Animais e Natureza",
+      food: "Comida e Bebida",
+      travel: "Viagem e Lugares",
       activities: "Atividades",
       objects: "Objetos",
       symbols: "Símbolos",
@@ -306,9 +314,10 @@ const pt: Dictionary = {
   meta: {
     aboutTitle: "Sobre",
     aboutDescription:
-      "Engenheiro frontend construindo interfaces de alta confiança e experiências marcantes com React e TypeScript.",
+      "Engenheiro frontend construindo experiências de alta confiança para produtos complexos com React, TypeScript, arquitetura e dados em tempo real.",
     siteDescription:
-      "Engenheiro de Software. Interfaces de alta confiança, experiências marcantes e engenharia assistida por IA.",
+      "Marcos Lott, Engenheiro de Software do Brasil. Construo experiências de alta confiança para produtos complexos com React, TypeScript, arquitetura e experiências financeiras em tempo real.",
+    ogImageAlt: "Monograma Marcos Lott, engenharia de software",
   },
 };
 

@@ -15,7 +15,7 @@ export interface EmojiGroup {
   items: EmojiEntry[];
 }
 
-export const DEFAULT_EMOJI = "👋";
+export const DEFAULT_EMOJI = "💚";
 
 export const EMOJI_GROUPS: EmojiGroup[] = [
   {

@@ -3,21 +3,24 @@ import Image from "next/image";
 /**
  * Hero portrait. Frames the real photo (`/main.jpg`, 900×1200) inside the same
  * organic squircle/blob mask used elsewhere, with an accent-tinted shadow, an
- * offset frame behind for editorial depth, and a faint Fraunces "ML" signature
+ * offset frame behind for editorial depth, and a faint logo signature
  * tying the photo to the wordmark. CSS-only hover (spring morph + lift); the
  * aspect box reserves layout space so there is no CLS.
  */
 export function Portrait({ alt }: { alt: string }) {
   return (
     <div className="group relative w-full max-w-[clamp(15rem,42vw,20rem)]">
-      {/* Faint Fraunces "ML" signature peeking from behind, lower-left. Low
-          ornament — reads as a watermark tying the photo to the wordmark. */}
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-6 -left-5 -z-10 select-none font-[family-name:var(--font-heading)] text-[clamp(4.5rem,17vw,8rem)] leading-none font-semibold tracking-tight text-primary/10 transition-transform duration-[600ms] ease-[var(--ease-spring)] group-hover:-translate-x-1 group-hover:translate-y-1 dark:text-primary/15"
-      >
-        ML
-      </span>
+      {/* Faint logo signature peeking from behind, lower-left. Low ornament —
+          reads as a watermark tying the photo to the wordmark. */}
+      <Image
+        src="/logo.svg"
+        alt="lott logo"
+        aria-hidden
+        unoptimized
+        width={450}
+        height={450}
+        className="pointer-events-none absolute -bottom-23 -left-15 -z-10 h-auto w-[clamp(12.75rem,25.5vw,12rem)] select-none opacity-45 transition-transform duration-[600ms] ease-[var(--ease-spring)] group-hover:-translate-x-1 group-hover:translate-y-1 dark:opacity-55"
+      />
 
       {/* Offset frame behind for editorial depth — accent border, no grey. */}
       <div

@@ -314,6 +314,17 @@ body::after {
   text-wrap: balance;
 }
 
+.text-h4 {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  font-optical-sizing: auto;
+  font-feature-settings: "liga" 1, "kern" 1;
+  text-wrap: balance;
+}
+
 .text-lead {
   font-family: var(--font-sans);
   font-size: var(--text-lg);

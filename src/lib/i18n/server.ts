@@ -8,7 +8,8 @@ import { defaultLocale, isLocale, LOCALE_COOKIE, type Locale } from "./config";
  * Resolve the active locale for a request:
  * 1. An explicit `locale` cookie (set by the language toggle) wins.
  * 2. Otherwise fall back to the visitor's country — Brazil → pt, else en.
- * 3. Finally honor Accept-Language, then the default.
+ * 3. Honor Accept-Language when it starts with `pt`.
+ * 4. Default to English.
  */
 export async function getLocale(): Promise<Locale> {
   const cookieStore = await cookies();

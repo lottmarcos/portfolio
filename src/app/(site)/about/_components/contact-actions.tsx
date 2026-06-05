@@ -14,7 +14,9 @@ export function ContactActions() {
   return (
     <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
       <a
-        href={siteConfig.socials.email}
+        href={siteConfig.socials.linkedinMessage}
+        target="_blank"
+        rel="noopener noreferrer"
         onMouseEnter={() => play("hover")}
         onClick={() => play("link")}
         className="group inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition-transform duration-200 ease-[var(--ease-spring)] hover:-translate-y-0.5"

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
 import { useLanguage } from "@/components/i18n/language-provider";
@@ -54,7 +55,7 @@ export function AnimatedFooter() {
         <div className="grid gap-12 md:grid-cols-2 md:gap-8">
           <div className="flex flex-col">
             <p className="text-overline mb-4">{siteConfig.name}</p>
-            <p className="text-h3 max-w-xs text-balance">{t.footer.tagline}</p>
+            <p className="text-h4 max-w-xs text-balance">{t.footer.tagline}</p>
             <div className="mt-6">
               <SocialLinks className="-ml-2.5" />
             </div>
@@ -72,13 +73,15 @@ export function AnimatedFooter() {
           </span>
         </div>
 
-        {/* Oversized editorial signature, faint, decorative. */}
-        <span
-          aria-hidden="true"
-          className="pointer-events-none absolute -right-2 -bottom-6 hidden select-none font-[family-name:var(--font-heading)] text-[7rem] leading-none font-semibold text-primary/[0.06] sm:block lg:text-[9rem]"
-        >
-          ML
-        </span>
+        {/* Oversized editorial logo signature, faint, decorative. */}
+        <Image
+          src="/logo.svg"
+          alt="lott logo"
+          aria-hidden
+          width={1200}
+          height={1200}
+          className="pointer-events-none absolute -right-0 -bottom-6 hidden h-auto w-[16rem] select-none opacity-[0.36] sm:block lg:w-[18rem]"
+        />
       </div>
     </footer>
   );
