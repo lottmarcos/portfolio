@@ -1,11 +1,14 @@
 const DEFAULT_REDIRECT_HOSTS = [
+  "lott.dev",
   "lott.dev.br",
   "marcoslott.dev",
   "www.marcoslott.dev",
 ] as const;
 
+const LOCAL_HOSTS = new Set(["localhost", "127.0.0.1", "::1"]);
+
 export function getCanonicalOrigin(): string {
-  return process.env.NEXT_PUBLIC_SITE_URL ?? "https://lott.dev";
+  return process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.lott.dev.br";
 }
 
 export function getCanonicalHost(): string {
@@ -32,12 +35,20 @@ export function buildCanonicalRedirectUrl(
   return target;
 }
 
+function isLocalDevHost(host: string | null): boolean {
+  const bareHost = host?.split(":")[0]?.toLowerCase();
+  return bareHost !== undefined && LOCAL_HOSTS.has(bareHost);
+}
+
 export function resolveCanonicalRedirect(
   host: string | null,
   protocol: string | null,
   pathname: string,
   search: string
 ): { kind: "https" | "canonical"; target: URL } | null {
+  if (process.env.NODE_ENV === "development") return null;
+  if (isLocalDevHost(host)) return null;
+
   if (protocol === "http") {
     const target = new URL(getCanonicalOrigin());
     target.pathname = pathname;

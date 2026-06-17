@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from "vitest";
+import { afterEach, describe, expect, it, vi } from "vitest";
 
 import {
   buildCanonicalRedirectUrl,
@@ -27,6 +27,7 @@ describe("getRedirectHosts", () => {
   it("excludes the canonical host from defaults", () => {
     process.env.NEXT_PUBLIC_SITE_URL = "https://www.lott.dev.br";
     expect(getRedirectHosts()).toEqual([
+      "lott.dev",
       "lott.dev.br",
       "marcoslott.dev",
       "www.marcoslott.dev",
@@ -84,6 +85,25 @@ describe("resolveCanonicalRedirect", () => {
     );
 
     expect(result).toBeNull();
+  });
+
+  it("skips redirects for localhost", () => {
+    process.env.NEXT_PUBLIC_SITE_URL = "https://www.lott.dev.br";
+
+    expect(
+      resolveCanonicalRedirect("localhost", "http", "/", "")
+    ).toBeNull();
+  });
+
+  it("skips redirects in development", () => {
+    vi.stubEnv("NODE_ENV", "development");
+    process.env.NEXT_PUBLIC_SITE_URL = "https://www.lott.dev.br";
+
+    expect(
+      resolveCanonicalRedirect("lott.dev.br", "http", "/about", "")
+    ).toBeNull();
+
+    vi.unstubAllEnvs();
   });
 });
 

@@ -1,11 +1,12 @@
+import { getCanonicalOrigin } from "@/lib/security/canonical";
+
 /**
  * Non-localized brand constants. All user-facing copy lives in the i18n
  * dictionaries (`src/lib/i18n/dictionaries.ts`).
  */
 export const siteConfig = {
   name: "Marcos Lott",
-  // Canonical site URL — override in production via NEXT_PUBLIC_SITE_URL.
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://lott.dev",
+  url: getCanonicalOrigin(),
   ogImage: {
     path: "/og.jpg",
     width: 1200,
