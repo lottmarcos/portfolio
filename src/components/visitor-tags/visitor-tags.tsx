@@ -268,13 +268,15 @@ export function VisitorTags() {
 
       {globalEmojis.length > 0 && (
         <ul
-          className="mb-3 flex flex-wrap gap-2"
+          className="tag-scroll mb-3 flex gap-2"
+          role="region"
           aria-label={t.visitor.sendEmoji}
+          tabIndex={0}
         >
           {globalEmojis.map((tag) => (
             <li
               key={tag.emoji}
-              className="animate-tag-in inline-flex items-center gap-1 rounded-full border border-border bg-background/60 py-1 pr-2.5 pl-2 text-sm"
+              className="animate-tag-in inline-flex shrink-0 items-center gap-1 rounded-full border border-border bg-background/60 py-1 pr-2.5 pl-2 text-sm"
             >
               <span aria-hidden="true" className="text-base leading-none">
                 {tag.emoji}
@@ -286,11 +288,16 @@ export function VisitorTags() {
       )}
 
       {cities.length > 0 && (
-        <ul className="mb-4 flex flex-wrap gap-2" aria-label={t.visitor.leaveMark}>
+        <ul
+          className="tag-scroll mb-4 flex gap-2"
+          role="region"
+          aria-label={t.visitor.leaveMark}
+          tabIndex={0}
+        >
           {cities.map((tag) => (
             <li
               key={tag.city}
-              className="animate-tag-in inline-flex items-center gap-1.5 rounded-full border border-border bg-background/60 py-1 pr-2.5 pl-2 text-sm"
+              className="animate-tag-in inline-flex shrink-0 items-center gap-1.5 rounded-full border border-border bg-background/60 py-1 pr-2.5 pl-2 text-sm"
             >
               <span className="text-foreground">{tag.city}</span>
               <span className="tabular-nums text-muted-foreground">

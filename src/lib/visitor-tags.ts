@@ -16,7 +16,7 @@ export type RecordMarkResult =
   | { ok: true; snapshot: VisitorTagsSnapshot }
   | { ok: false; code: RecordMarkErrorCode; message: string };
 
-const TOP_LIMIT = 5;
+const TOP_LIMIT = 200;
 const CACHE_REVALIDATE_SECONDS = 30;
 
 type RpcRow = {

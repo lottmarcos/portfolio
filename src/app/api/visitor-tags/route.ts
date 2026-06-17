@@ -26,7 +26,7 @@ function clientIp(request: NextRequest): string {
 }
 
 export async function GET() {
-  const snapshot = await getVisitorTagsSnapshot(5);
+  const snapshot = await getVisitorTagsSnapshot();
   return NextResponse.json(snapshot, {
     headers: { "Cache-Control": "no-store" },
   });

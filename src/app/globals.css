@@ -546,3 +546,16 @@ html.about-snap.about-snap--footer-mode .snap-page-end {
     animation: none;
   }
 }
+
+@utility tag-scroll {
+  overflow-x: auto;
+  padding-left: 16px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  mask-image: linear-gradient(
+    to right, transparent, black 24px, black calc(100% - 24px), transparent
+  );
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

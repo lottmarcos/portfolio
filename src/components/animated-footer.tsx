@@ -61,7 +61,7 @@ export function AnimatedFooter() {
             </div>
           </div>
 
-          <div className="md:pl-4">
+          <div className="min-w-0 md:pl-4">
             <VisitorTags />
           </div>
         </div>
