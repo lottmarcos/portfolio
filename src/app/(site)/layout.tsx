@@ -1,7 +1,8 @@
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
 
 import { AnimatedFooter } from "@/components/animated-footer";
 import { LanguageProvider } from "@/components/i18n/language-provider";
+import { QrCodeModal } from "@/components/qrcode-modal";
 import { SiteHeader } from "@/components/site-header";
 import { SoundProvider } from "@/components/sound/sound-provider";
 import { getLocale } from "@/lib/i18n/server";
@@ -28,6 +29,10 @@ export default async function SiteLayout({ children }: { children: ReactNode }) 
         </div>
 
         <AnimatedFooter />
+
+        <Suspense fallback={null}>
+          <QrCodeModal />
+        </Suspense>
       </SoundProvider>
     </LanguageProvider>
   );

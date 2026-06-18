@@ -49,6 +49,15 @@ export interface Dictionary {
     siteDescription: string;
     ogImageAlt: string;
   };
+  qrcode: {
+    meetupFrontendAvenue: {
+      title: string;
+      description: string;
+      fab: string;
+      connectPrompt: string;
+      connectButton: string;
+    };
+  };
 }
 
 const en: Dictionary = {
@@ -184,6 +193,15 @@ const en: Dictionary = {
       "Marcos Lott, Software Engineer from Brazil. I build high-trust experiences for complex products with React, TypeScript, architecture, and real-time financial experiences.",
     ogImageAlt: "Marcos Lott monogram, software engineering",
   },
+  qrcode: {
+    meetupFrontendAvenue: {
+      title: "Frontend Avenue",
+      description: "Thanks for attending the meetup!",
+      fab: "Meetup Frontend",
+      connectPrompt: "Let's connect on LinkedIn:",
+      connectButton: "Connect",
+    },
+  },
 };
 
 const pt: Dictionary = {
@@ -318,6 +336,15 @@ const pt: Dictionary = {
     siteDescription:
       "Marcos Lott, Engenheiro de Software do Brasil. Construo experiências de alta confiança para produtos complexos com React, TypeScript, arquitetura e experiências financeiras em tempo real.",
     ogImageAlt: "Monograma Marcos Lott, engenharia de software",
+  },
+  qrcode: {
+    meetupFrontendAvenue: {
+      title: "Frontend Avenue",
+      description: "Obrigado por participar do meetup!",
+      fab: "Meetup Frontend",
+      connectPrompt: "Vamos nos conectar no LinkedIn:",
+      connectButton: "Conectar",
+    },
   },
 };
 
