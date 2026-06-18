@@ -13,12 +13,12 @@ interface Speaker {
 const speakers: Speaker[] = [
   {
     name: "Marcos Lott",
-    photo: "/lott-meetup.png",
+    photo: "/lott-meetup.jpg",
     linkedin: "https://www.linkedin.com/in/lott/",
   },
   {
     name: "Victória Freitas",
-    photo: "/vica-meetup.png",
+    photo: "/vica-meetup.jpg",
     linkedin: "https://www.linkedin.com/in/victoriadefreitas/",
   },
 ];
