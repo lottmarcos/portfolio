@@ -26,14 +26,16 @@ const speakers: Speaker[] = [
 function SpeakerCard({ speaker, buttonLabel }: { speaker: Speaker; buttonLabel: string }) {
   return (
     <div className="flex flex-col items-center gap-3">
-      <Image
-        src={speaker.photo}
-        alt={speaker.name}
-        width={72}
-        height={72}
-        className="rounded-full object-cover"
-      />
-      <span className="text-sm font-medium text-card-foreground">
+      <div className="size-[72px] shrink-0 overflow-hidden rounded-full">
+        <Image
+          src={speaker.photo}
+          alt={speaker.name}
+          width={72}
+          height={72}
+          className="size-full object-cover"
+        />
+      </div>
+      <span className="text-center text-sm font-medium text-card-foreground">
         {speaker.name}
       </span>
       <a
@@ -58,7 +60,7 @@ export function MeetupFrontendAvenue() {
       <p className="text-sm text-muted-foreground">
         {strings.connectPrompt}
       </p>
-      <div className="flex flex-wrap justify-center gap-6">
+      <div className="grid w-full grid-cols-2 gap-6">
         {speakers.map((speaker) => (
           <SpeakerCard
             key={speaker.linkedin}
